@@ -11,9 +11,11 @@ namespace Xamarin.Sozluk
 	{
 		public App ()
 		{
-			InitializeComponent();
-
-			MainPage = new Xamarin.Sozluk.MainPage();
+			InitializeComponent(); 
+			MainPage = new NavigationPage(root:new Views.MainPage())
+			{
+                BackgroundColor = ClassUtils.NavigationBarBackgroundColor
+			};
 		}
 
 		protected override void OnStart ()
