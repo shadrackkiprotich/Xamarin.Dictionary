@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:Xamarin.Sozluk.ViewModels;assembly=Xamarin.Sozluk"
+             x:Class="Xamarin.Sozluk.View.LoginView">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel/> 
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Takma isminiz :"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" />
+            <Entry x:Name="txtNick" TextColor="Black" BackgroundColor="White"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center" 
+                   HorizontalTextAlignment="Center" WidthRequest="150"
+                   Text="{Binding EntryNick}"></Entry>
+            <Button Text="Tamamla" TextColor="White" BackgroundColor="#B52535" VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Command="{Binding LoginControlCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

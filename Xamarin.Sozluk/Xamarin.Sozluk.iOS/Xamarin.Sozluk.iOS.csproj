@@ -128,4 +128,16 @@
       <Name>Xamarin.Sozluk</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconRank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconSettings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconSorular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IconWordAdd.png" />
+  </ItemGroup>
 </Project>

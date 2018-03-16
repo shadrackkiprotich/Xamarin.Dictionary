@@ -9,8 +9,7 @@ namespace Xamarin.Sozluk.Views
 	{
 		public MainPage ()
 		{
-			InitializeComponent(); 
-             
+			InitializeComponent();  
         }
 	}
 }

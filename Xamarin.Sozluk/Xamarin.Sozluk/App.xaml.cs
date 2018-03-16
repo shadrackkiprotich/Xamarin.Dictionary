@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Xamarin.Forms;
+using Xamarin.Sozluk.View;
 
 namespace Xamarin.Sozluk
 {
-	public partial class App : Application
+    public partial class App : Application
 	{
 		public App ()
 		{
 			InitializeComponent(); 
-			MainPage = new NavigationPage(root:new Views.MainPage())
+			MainPage = new NavigationPage(root:new LoginView())
 			{
                 BarBackgroundColor = ClassUtils.NavigationBarBackgroundColor,
                 BarTextColor = Color.White

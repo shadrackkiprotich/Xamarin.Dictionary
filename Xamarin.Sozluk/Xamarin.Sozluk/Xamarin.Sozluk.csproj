@@ -6,23 +6,14 @@
 
   <ItemGroup>
     <None Remove="Image\bg.png" />
-    <None Remove="Image\Iconlearn.png" />
-    <None Remove="Image\IconQuestion.png" />
-    <None Remove="Image\IconRank.png" />
-    <None Remove="Image\IconSettings.png" />
-    <None Remove="Image\IconWordAdd.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Image\bg.png" />
-    <EmbeddedResource Include="Image\Iconlearn.png" />
-    <EmbeddedResource Include="Image\IconRank.png" />
-    <EmbeddedResource Include="Image\IconSettings.png" />
-    <EmbeddedResource Include="Image\IconQuestion.png" />
-    <EmbeddedResource Include="Image\IconWordAdd.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FirebaseDatabase.net" Version="3.3.3" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
 
@@ -30,16 +21,17 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+    <Compile Update="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="View\LoginView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>
