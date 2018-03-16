@@ -14,7 +14,8 @@ namespace Xamarin.Sozluk
 			InitializeComponent(); 
 			MainPage = new NavigationPage(root:new Views.MainPage())
 			{
-                BackgroundColor = ClassUtils.NavigationBarBackgroundColor
+                BarBackgroundColor = ClassUtils.NavigationBarBackgroundColor,
+                BarTextColor = Color.White
 			};
 		}
 

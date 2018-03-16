@@ -6,10 +6,20 @@
 
   <ItemGroup>
     <None Remove="Image\bg.png" />
+    <None Remove="Image\Iconlearn.png" />
+    <None Remove="Image\IconQuestion.png" />
+    <None Remove="Image\IconRank.png" />
+    <None Remove="Image\IconSettings.png" />
+    <None Remove="Image\IconWordAdd.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Image\bg.png" />
+    <EmbeddedResource Include="Image\Iconlearn.png" />
+    <EmbeddedResource Include="Image\IconRank.png" />
+    <EmbeddedResource Include="Image\IconSettings.png" />
+    <EmbeddedResource Include="Image\IconQuestion.png" />
+    <EmbeddedResource Include="Image\IconWordAdd.png" />
   </ItemGroup>
 
   <ItemGroup>

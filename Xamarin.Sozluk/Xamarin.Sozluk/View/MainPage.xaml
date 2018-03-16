@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:sozluk="clr-namespace:Xamarin.Sozluk;assembly=Xamarin.Sozluk"
-             x:Class="Xamarin.Sozluk.Views.MainPage">
+             xmlns:root="clr-namespace:Xamarin.Sozluk;assembly=Xamarin.Sozluk"
+             x:Class="Xamarin.Sozluk.Views.MainPage"
+             Title="Kelime Öğretici">
     <ContentPage.Content>
         <RelativeLayout>
-            <Image Aspect="Fill" Source="{sozluk:ImageSource Source='Xamarin.Sozluk.Image.bg.png'
-                }" Opacity="0.6"
+            <Image Aspect="Fill" Source="{root:ImageSource Source='Xamarin.Sozluk.Image.bg.png'}" Opacity="0.6"
             RelativeLayout.WidthConstraint=
               "{ConstraintExpression Type=RelativeToParent, Property=Width}"
             RelativeLayout.HeightConstraint=
@@ -25,29 +25,29 @@
                 </Grid.ColumnDefinitions>
 
                 <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
-                    <Image Source="Iconlearn.png" HeightRequest="150"></Image>
+                    <Image Source="{root:ImageSource Source='Xamarin.Sozluk.Image.Iconlearn.png'}" HeightRequest="150"></Image>
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Grid.Column="0">
                     <Button Text="Sorular" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#EAEACD" BorderRadius="40" 
-                            Image="IconSorular.png">
-                    </Button>
+                            Image="{root:ImageSource Source='Xamarin.Sozluk.Image.IconQuestion.png'}">
+                    </Button> 
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Grid.Column="1">
                     <Button Text="Kelime ekle" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D6B487" BorderRadius="40"
-                             Image="IconWordAdd.png"></Button>
+                             Image="{root:ImageSource Source='Xamarin.Sozluk.Image.IconWordAdd.png'}"></Button>
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" Grid.Column="0">
                     <Button Text="Sıralama" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D1A581" BorderRadius="40"
-                             Image="IconRank.png" >
+                             Image="{root:ImageSource Source='Xamarin.Sozluk.Image.IconRank.png'}" >
                     </Button>
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" Grid.Column="1">
                     <Button Text="Ayarlar" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#C58C5F" BorderRadius="40"
-                            Image="IconSettings.png"  >
+                            Image="{root:ImageSource Source='Xamarin.Sozluk.Image.IconSettings.png'}"  >
                     </Button>
                 </StackLayout>
 
