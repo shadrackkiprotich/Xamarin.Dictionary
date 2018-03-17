@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <None Remove="Image\bg.png" />
+    <None Remove="Image\Iconlearn.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Image\bg.png" />
+    <EmbeddedResource Include="Image\Iconlearn.png" />
   </ItemGroup>
 
   <ItemGroup>

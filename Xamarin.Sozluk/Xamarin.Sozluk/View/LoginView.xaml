@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewModels="clr-namespace:Xamarin.Sozluk.ViewModels;assembly=Xamarin.Sozluk"
-             x:Class="Xamarin.Sozluk.View.LoginView">
-    <ContentPage.BindingContext>
-        <viewModels:LoginViewModel/> 
-    </ContentPage.BindingContext>
+             x:Class="Xamarin.Sozluk.View.LoginView"
+             Title="Kelime Öğretici"> 
 
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand">
             <Label Text="Takma isminiz :"
