@@ -8,7 +8,8 @@ using Xamarin.Sozluk.Views;
 namespace Xamarin.Sozluk
 {
     public partial class App : Application
-    {
+    { 
+
         public App()
         {
             InitializeComponent();
