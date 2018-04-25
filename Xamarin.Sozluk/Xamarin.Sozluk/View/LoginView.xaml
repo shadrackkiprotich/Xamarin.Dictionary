@@ -21,6 +21,7 @@
             <Button Text="Tamamla" TextColor="White" BackgroundColor="#B52535" VerticalOptions="Center"
                     HorizontalOptions="Center"
                     Command="{Binding LoginControlCommand}"></Button>
+            <ActivityIndicator IsRunning="True" IsEnabled="True" IsVisible="{Binding ActivityInd}"></ActivityIndicator>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

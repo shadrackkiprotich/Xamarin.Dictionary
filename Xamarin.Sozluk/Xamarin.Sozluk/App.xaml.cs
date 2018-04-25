@@ -11,8 +11,7 @@ namespace Xamarin.Sozluk
     {
         public App()
         {
-            InitializeComponent();
-            Application.Current.Properties.Clear();
+            InitializeComponent(); 
             ClassUtils.MyFireBaseClient = new FirebaseClient(ClassUtils.FirebaseDbPath); 
             if (Application.Current.Properties.Count > 0)
             {

@@ -28,24 +28,24 @@
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Grid.Column="0">
-                    <Button Text="Sorular" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#EAEACD" BorderRadius="40" 
+                    <Button Text="Sorular" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#EAEACD"  
                             Image="IconQuestion.png}">
                     </Button> 
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Grid.Column="1">
-                    <Button Text="Kelime ekle" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D6B487" BorderRadius="40"
+                    <Button Text="Kelime ekle" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D6B487"  
                              Image="IconWordAdd.png"></Button>
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" Grid.Column="0">
-                    <Button Text="Sıralama" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D1A581" BorderRadius="40"
+                    <Button Text="Sıralama" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D1A581" 
                              Image="IconRank.png" >
                     </Button>
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" Grid.Column="1">
-                    <Button Text="Ayarlar" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#C58C5F" BorderRadius="40"
+                    <Button Text="Ayarlar" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#C58C5F"  
                             Image="IconSettings.png"  >
                     </Button>
                 </StackLayout>
