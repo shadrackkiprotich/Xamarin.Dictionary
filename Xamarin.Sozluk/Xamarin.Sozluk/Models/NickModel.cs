@@ -8,5 +8,6 @@ namespace Xamarin.Sozluk.Models
     { 
         public string Nick{ get; set; }
         public string ObjectKey { get; set; }
+        public int Score { get; set; }
     }
 }

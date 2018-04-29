@@ -140,4 +140,5 @@
   <ItemGroup>
     <BundleResource Include="Resources\IconWordAdd.png" />
   </ItemGroup>
+  <ItemGroup />
 </Project>
