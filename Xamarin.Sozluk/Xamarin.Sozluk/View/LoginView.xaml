@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewModels="clr-namespace:Xamarin.Sozluk.ViewModels;assembly=Xamarin.Sozluk"
              x:Class="Xamarin.Sozluk.View.LoginView"
-             Title="Kelime Öğretici"> 
+             Title="{Binding GetTitle}"> 
 
     <ContentPage.BindingContext>
         <viewModels:LoginViewModel/>
@@ -13,7 +13,7 @@
             <Label Text="Takma isminiz :"
                    VerticalOptions="Center" 
                    HorizontalOptions="Center" />
-            <Entry x:Name="txtNick" TextColor="Black" BackgroundColor="White"
+            <Entry x:Name="txtNick" TextColor="Black"
                    VerticalOptions="Center"
                    HorizontalOptions="Center" 
                    HorizontalTextAlignment="Center" WidthRequest="150"

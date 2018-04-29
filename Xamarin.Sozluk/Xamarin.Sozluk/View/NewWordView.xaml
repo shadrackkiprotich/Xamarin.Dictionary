@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin.Sozluk.View.NewWordView">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="0,30,0,0"></OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="#B52535" VerticalOptions="Start" Padding="15">
+                <Label TextColor="#6FD789" HorizontalOptions="Center" 
+                       Text="Yeni kelimeler oluştur"/>
+
+                <BoxView Color="Black" HeightRequest="1" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
+
+                <Label TextColor="White" HorizontalOptions="Center" FontSize="Micro" IsVisible="True"
+                       Text="Kendi eklediğiniz kelimeler, öğrenme kuyruğunda üst sıralara çekilir. Ancak genel sıralamada sizin eklediğiniz kelimeler puanlanmaz." 
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="Start" Margin="15">
+                <Grid x:Name="MainGrid" ColumnSpacing="10" RowSpacing="10" Padding="30" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Entry Grid.Row="0" Grid.Column="0" WidthRequest="150" BackgroundColor="White" TextColor="Black" Placeholder="İngilizce kelime"></Entry>
+                    <Entry Grid.Row="1" Grid.Column="0" WidthRequest="150" BackgroundColor="White" TextColor="Black" Placeholder="Türkçe anlamı"></Entry>
+                    <Button Grid.Row="2" Grid.ColumnSpan="1" Text="Kontrol et ve kaydet" BackgroundColor="#B52535" TextColor="White"></Button>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

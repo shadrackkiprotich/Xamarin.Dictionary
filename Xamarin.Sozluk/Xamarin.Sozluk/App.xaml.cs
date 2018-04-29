@@ -20,7 +20,7 @@ namespace Xamarin.Sozluk
                     ObjectKey = Application.Current.Properties["UserKey"] as string,
                     Nick = Application.Current.Properties["UserNick"] as string
                 };
-                ClassUtils.SetMainPage(new MainPage());
+                ClassUtils.SetMainPage(new MainView());
             }
             else
                 ClassUtils.SetMainPage(new LoginView());

@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace Xamarin.Sozluk.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MainPage : ContentPage
+	public partial class MainView : ContentPage
 	{
-		public MainPage ()
+		public MainView()
 		{
 			InitializeComponent();
         }

@@ -9,9 +9,9 @@ namespace Xamarin.Sozluk
     public class ClassUtils
     {
         public static NickModel UserInfo { get; set; }
-
         public static Color NavigationBarBackgroundColor = Color.FromHex("#B52535"); 
-        public static string FirebaseDbPath => "https://xamarinsozluk.firebaseio.com/"; 
+        public static string FirebaseDbPath => "https://xamarinsozluk.firebaseio.com/";
+        public static string MainPageTitle => "Kelime Öğretici";
         public static FirebaseClient MyFireBaseClient { get; set; }
         public static async Task OpenView(Page page)
         {

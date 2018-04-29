@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Sozluk.Models;
-using Xamarin.Sozluk.View;
 using Xamarin.Sozluk.Views;
 
 namespace Xamarin.Sozluk.ViewModels
@@ -18,9 +17,9 @@ namespace Xamarin.Sozluk.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        public string GetTitle => ClassUtils.MainPageTitle;
         private string _entrynick;
         private bool _activityInd;
-
         public string EntryNick
         {
             get => _entrynick;
@@ -51,7 +50,7 @@ namespace Xamarin.Sozluk.ViewModels
                         select x).ToList();
 
                 if (list.Count > 0)
-                    await ClassUtils.DisplayAlert("Error", "This nick already exists!", "OK");
+                    await ClassUtils.DisplayAlert("Error", "This username already exists!", "OK");
                 else
                 {
                     NickModel newNick = new NickModel {Nick = EntryNick};
@@ -63,7 +62,7 @@ namespace Xamarin.Sozluk.ViewModels
                     Application.Current.Properties.Add("UserNick", newNick.Nick);
                     await Application.Current.SavePropertiesAsync();
 
-                    ClassUtils.SetMainPage(new MainPage());
+                    ClassUtils.SetMainPage(new MainView());
                 }
             }
             catch (System.Exception exception)

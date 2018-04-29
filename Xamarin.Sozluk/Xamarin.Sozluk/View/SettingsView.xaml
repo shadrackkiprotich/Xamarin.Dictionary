@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin.Sozluk.View.SettingsView">
+    
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="0,30,0,0"></OnPlatform>
+
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout>
+                <Button Text="Uygulama Hakkında Bilgiler" BackgroundColor="#B52535" TextColor="White" Margin="15"></Button>
+
+            </StackLayout>
+            <StackLayout BackgroundColor="#B52535" Padding ="5">
+                <Label Text="Aşağıdaki ayarlar dışında, uygulama tarafından belirlenmiş bir standart mevcuttur. Lütfen yukarıdan bilgi alınız." 
+                       HorizontalOptions="CenterAndExpand" FontSize="Small" TextColor="White" HorizontalTextAlignment="Center"></Label>
+            </StackLayout>
+            <StackLayout Margin="15" Padding="15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Günlük kelime sayısı :" TextColor="Black"
+                           HorizontalTextAlignment="End" HorizontalOptions="FillAndExpand" ></Label>
+                    <Picker Grid.Row="0" Grid.Column="1" Title="5"></Picker>
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="Uyarı sesi :" HorizontalTextAlignment="End"></Label>
+
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Picker Grid.Row="0" Grid.Column="0" Title="Uyarı 1"></Picker>
+                        <Button Grid.Row="0" Grid.Column="1" Text="dinle" BackgroundColor="#B52535" TextColor="White"></Button>
+                    </Grid>
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="İlk hatırlatma zamanı :" TextColor="Black" HorizontalTextAlignment="End" HorizontalOptions="FillAndExpand"></Label>
+                    <TimePicker Grid.Row="2" Grid.Column="1" Time="12:00"></TimePicker>
+
+                    <Label Grid.Row="3" Grid.Column="0" Text="Son hatırlatma zamanı :" TextColor="Black" HorizontalTextAlignment="End" HorizontalOptions="FillAndExpand"></Label>
+                    <TimePicker Grid.Row="3" Grid.Column="1" Time="20:00"  ></TimePicker>
+
+                    <Button Grid.Row="4" Grid.ColumnSpan="2" Text="Ayarları Kaydet" TextColor="White" BackgroundColor="#B52535" ></Button>
+
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -2,15 +2,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:root="clr-namespace:Xamarin.Sozluk;assembly=Xamarin.Sozluk"
-             x:Class="Xamarin.Sozluk.Views.MainPage"
-             Title="Kelime Öğretici">
+             xmlns:viewModels="clr-namespace:Xamarin.Sozluk.ViewModels;assembly=Xamarin.Sozluk"
+             x:Class="Xamarin.Sozluk.Views.MainView"
+             Title="{Binding GetTitle}">
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="0,30,0,0"></OnPlatform>
+    </ContentPage.Padding>
+
     <ContentPage.Content>
         <RelativeLayout>
             <Image Aspect="Fill" Source="{root:ImageSource Source='Xamarin.Sozluk.Image.bg.png'}" Opacity="0.6"
             RelativeLayout.WidthConstraint=
               "{ConstraintExpression Type=RelativeToParent, Property=Width}"
             RelativeLayout.HeightConstraint=
-              "{ConstraintExpression Type=RelativeToParent, Property=Height}"/> 
+              "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
 
             <Grid x:Name="MainGrid" ColumnSpacing="10" RowSpacing="10" Padding="30" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
@@ -28,25 +38,25 @@
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Grid.Column="0">
-                    <Button Text="Sorular" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#EAEACD"  
-                            Image="IconQuestion.png}">
-                    </Button> 
+                    <Button Text="Sorular" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#EAEACD" CornerRadius="40"
+                            Image="IconQuestion.png" Command="{Binding OpenQuestionView}">
+                    </Button>
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Grid.Column="1">
-                    <Button Text="Kelime ekle" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D6B487"  
-                             Image="IconWordAdd.png"></Button>
+                    <Button Text="Kelime ekle" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D6B487" CornerRadius="40"
+                             Image="IconWordAdd.png" Command="{Binding OpenNewWordView}"></Button>
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" Grid.Column="0">
-                    <Button Text="Sıralama" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D1A581" 
-                             Image="IconRank.png" >
+                    <Button Text="Sıralama" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#D1A581" CornerRadius="40"
+                             Image="IconRank.png" Command="{Binding OpenRankView}">
                     </Button>
                 </StackLayout>
 
                 <StackLayout Grid.Row="2" Grid.Column="1">
-                    <Button Text="Ayarlar" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#C58C5F"  
-                            Image="IconSettings.png"  >
+                    <Button Text="Ayarlar" TextColor="#B52535" WidthRequest="150" HeightRequest="150" BackgroundColor="#C58C5F" CornerRadius="40"
+                            Image="IconSettings.png" Command="{Binding OpenSettingsView}" >
                     </Button>
                 </StackLayout>
 
