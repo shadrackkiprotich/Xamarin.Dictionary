@@ -19,7 +19,6 @@ namespace Xamarin.Sozluk.ViewModels
     public class NewWordViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -49,10 +48,15 @@ namespace Xamarin.Sozluk.ViewModels
             }
         }
         public Command AddWordToQueue => new Command(async () =>
-        {
+        { 
             if (SelectedModel != null)
             {
-                // 1 kelimeyi hafızaya al
+                var sql = new SqLiteManager();
+                var item = sql.GetAll().ToList();
+                if (!sql.Exists(SelectedModel.ObjectKey))
+                    sql.Insert(SelectedModel);
+                ViewWordList.Remove(SelectedModel);
+                sql.Dispose();
             }
             else
                 await ClassUtils.DisplayAlert("Hata", "Kelime Seçmediniz!", "Tamam");
@@ -73,17 +77,18 @@ namespace Xamarin.Sozluk.ViewModels
             {
                 var items = ClassUtils.MyFireBaseClient.Child("Words").OrderByKey().OnceAsync<WordModel>(); // all words come
                 ListRefreshing = true;
+                var sql = new SqLiteManager();
                 foreach (var d in items.Result)
-                {
-                    // 2 alınan kelimeleri getirme
-                    ViewWordList.Add(
-                                new WordModel()
-                                {
-                                    Word = d.Object.Word,
-                                    MeaningOfTheWord = d.Object.MeaningOfTheWord,
-                                    NumberOfViews = d.Object.NumberOfViews,
-                                    CorrectCount = d.Object.CorrectCount
-                                });
+                { 
+                    if (!sql.Exists(d.Key)) 
+                        ViewWordList.Add(new WordModel()
+                        {
+                            Word = d.Object.Word,
+                            MeaningOfTheWord = d.Object.MeaningOfTheWord,
+                            NumberOfViews = d.Object.NumberOfViews,
+                            CorrectCount = d.Object.CorrectCount,
+                            ObjectKey = d.Key
+                        });
                 }
                 ListRefreshing = false;
             });
