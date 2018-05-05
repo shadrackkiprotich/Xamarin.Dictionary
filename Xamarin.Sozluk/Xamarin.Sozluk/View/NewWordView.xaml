@@ -4,6 +4,7 @@
              xmlns:viewModels="clr-namespace:Xamarin.Sozluk.ViewModels;assembly=Xamarin.Sozluk"
              x:Class="Xamarin.Sozluk.View.NewWordView"
              Title="{Binding GetTitle}">
+
     <ContentPage.BindingContext>
         <viewModels:NewWordViewModel/>
     </ContentPage.BindingContext>
@@ -23,22 +24,31 @@
             </StackLayout> 
 
             <StackLayout Padding="0" Margin="0">
-                <Entry WidthRequest="150" TextColor="Black" Placeholder="İngilizce kelime ara.." PlaceholderColor="Gray"></Entry>
+                <Entry WidthRequest="150" TextColor="Black" Placeholder="İngilizce kelime ara.." PlaceholderColor="Gray" ></Entry>
                 <ListView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ViewWordList}"
-                      IsRefreshing="{Binding ListRefreshing}">
+                      IsRefreshing="{Binding ListRefreshing}"
+                          SelectedItem="{Binding SelectedModel}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" Padding="5">
-                                    <Label Text="{Binding Word}" HorizontalOptions="FillAndExpand"/>
-                                    <Label Text="{Binding MeaningOfTheWord}" HorizontalOptions="FillAndExpand"/>
-                                    <Button Text="ekle" BackgroundColor="#B52535" TextColor="White" HorizontalOptions="End" Font="Micro"></Button>
+                                    
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions> 
+                                        <Label Grid.Column="0" Text="{Binding Word}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding MeaningOfTheWord}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                                    </Grid>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView> 
             </StackLayout>
+            <Button Text="Seçtiğimi ekle" BackgroundColor="#B52535" TextColor="White" Margin="20" 
+                    Command="{Binding AddWordToQueue }"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

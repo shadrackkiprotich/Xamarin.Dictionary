@@ -15,6 +15,6 @@ namespace Xamarin.Sozluk.View
 		public NewWordView ()
 		{
 			InitializeComponent ();
-		}
+		} 
 	}
 }
