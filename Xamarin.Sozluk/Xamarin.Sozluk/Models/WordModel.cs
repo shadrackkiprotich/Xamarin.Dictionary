@@ -11,5 +11,6 @@ namespace Xamarin.Sozluk.Models
         public string MeaningOfTheWord { get; set; } // turkish 
         public int NumberOfViews { get; set; }
         public int CorrectCount { get; set; }
+        public int Point { get; set; }
     }
 }

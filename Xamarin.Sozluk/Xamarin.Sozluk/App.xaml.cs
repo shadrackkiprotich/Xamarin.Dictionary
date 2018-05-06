@@ -18,7 +18,8 @@ namespace Xamarin.Sozluk
                 ClassUtils.UserInfo = new NickModel()
                 {
                     ObjectKey = Application.Current.Properties["UserKey"] as string,
-                    Nick = Application.Current.Properties["UserNick"] as string
+                    Nick = Application.Current.Properties["UserNick"] as string,
+                    Score = 0
                 };
                 ClassUtils.SetMainPage(new MainView());
             }

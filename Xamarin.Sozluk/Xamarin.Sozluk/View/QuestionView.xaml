@@ -2,10 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:root="clr-namespace:Xamarin.Sozluk;assembly=Xamarin.Sozluk"
+             xmlns:viewModels="clr-namespace:Xamarin.Sozluk.ViewModels;assembly=Xamarin.Sozluk" 
              x:Class="Xamarin.Sozluk.View.QuestionView">
+    <ContentPage.BindingContext>
+        <viewModels:QuestionViewModel/>
+    </ContentPage.BindingContext> 
+
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness"
-                    iOS="0,30,0,0"></OnPlatform>
+                    iOS="0,30,0,0" />
     </ContentPage.Padding>
     <ContentPage.Content>
         <RelativeLayout>
@@ -15,9 +20,12 @@
             RelativeLayout.HeightConstraint=
               "{ConstraintExpression Type=RelativeToParent, Property=Height}"/>
 
-            <StackLayout VerticalOptions="Start" >
-                <Button BackgroundColor="Black" WidthRequest="310" HeightRequest="150" Margin="15" BorderRadius="50" BorderColor="White" BorderWidth="1" Opacity="0.8"
-                        Text="English Word" FontSize="Large" TextColor="White"/>
+            <ActivityIndicator IsEnabled="True" IsRunning="True" Color="#B52535" IsVisible="{Binding NotViewVisible}" 
+                               VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></ActivityIndicator>
+
+            <StackLayout VerticalOptions="Start" IsVisible="{Binding ViewVisible}">
+                <Button BackgroundColor="Black" WidthRequest="310" HeightRequest="150" Margin="15" CornerRadius="50" BorderColor="White" BorderWidth="1" Opacity="0.8"
+                        Text="{Binding QuestionWord.Word}" FontSize="Large" TextColor="White"/>
 
                 <StackLayout BackgroundColor="#B52535" VerticalOptions="Start" Padding="5">
                     <Label TextColor="AntiqueWhite" HorizontalOptions="Center" 
@@ -37,22 +45,26 @@
                     </Grid.ColumnDefinitions>
 
                     <StackLayout Grid.Row="0"  Grid.Column="0">
-                        <Button Text="Cevap 1" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"></Button>
+                        <Button x:Name="BtnAns1" Text="{Binding Answers[0]}" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"
+                                Command="{Binding ClickAnswerCommand}" CommandParameter="{Binding Source={x:Reference BtnAns1}, Path=Text}" CornerRadius="25"></Button>
                     </StackLayout>
                     <StackLayout Grid.Row="1"  Grid.Column="0">
-                        <Button Text="Cevap 1" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"></Button>
+                        <Button x:Name="BtnAns2" Text="{Binding Answers[1]}" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"
+                                Command="{Binding ClickAnswerCommand}" CommandParameter="{Binding Source={x:Reference BtnAns2}, Path=Text}" CornerRadius="25"></Button>
                     </StackLayout>
                     <StackLayout Grid.Row="2"  Grid.Column="0">
-                        <Button Text="Cevap 1" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"></Button>
+                        <Button x:Name="BtnAns3" Text="{Binding Answers[2]}" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"
+                                Command="{Binding ClickAnswerCommand}" CommandParameter="{Binding Source={x:Reference BtnAns3}, Path=Text}" CornerRadius="25"></Button>
                     </StackLayout>
                     <StackLayout Grid.Row="3"   Grid.Column="0">
-                        <Button Text="Cevap 1" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"></Button>
+                        <Button x:Name="BtnAns4" Text="{Binding Answers[3]}" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"
+                                Command="{Binding ClickAnswerCommand}" CommandParameter="{Binding Source={x:Reference BtnAns4}, Path=Text}" CornerRadius="25"></Button>
                     </StackLayout>
                 </Grid>
                 <StackLayout VerticalOptions="Fill" BackgroundColor="#D69D85" Margin="5">
                     <Label Text="Soru 5 puanlık değerlendirme ile %70 doğru bilindi" HorizontalOptions="Center" FontSize="Micro"></Label>
                 </StackLayout>
-            </StackLayout>
+            </StackLayout> 
         </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

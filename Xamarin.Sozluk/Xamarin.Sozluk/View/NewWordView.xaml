@@ -24,7 +24,7 @@
             </StackLayout> 
 
             <StackLayout Padding="0" Margin="0">
-                <Entry WidthRequest="150" TextColor="Black" Placeholder="İngilizce kelime ara.." PlaceholderColor="Gray" ></Entry>
+                <Entry WidthRequest="150" TextColor="Black" Placeholder="İngilizce kelime ara.." PlaceholderColor="Gray" Text="{Binding SearchWord}"></Entry>
                 <ListView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ViewWordList}"
                       IsRefreshing="{Binding ListRefreshing}"
                           SelectedItem="{Binding SelectedModel}">

@@ -37,6 +37,22 @@ namespace Xamarin.Sozluk.ViewModels
                 ListRefreshing = false;
             }
         }
+        private string _searchWord;
+        public string SearchWord
+        {
+            get => _searchWord;
+            set
+            {
+                _searchWord = value;
+                OnPropertyChanged();
+                SearchTextChanged();
+            }
+        }
+        private ObservableCollection<WordModel> _orjList;
+        public void SearchTextChanged()
+        {
+            ViewWordList = SearchWord.Length > 2 ? new ObservableCollection<WordModel>(ViewWordList.Where(c => c.Word.StartsWith(SearchWord))) : _orjList;
+        }
         private bool _listRefresh;
         public bool ListRefreshing
         {
@@ -48,20 +64,20 @@ namespace Xamarin.Sozluk.ViewModels
             }
         }
         public Command AddWordToQueue => new Command(async () =>
-        { 
+        {
             if (SelectedModel != null)
             {
                 var sql = new SqLiteManager();
-                var item = sql.GetAll().ToList();
                 if (!sql.Exists(SelectedModel.ObjectKey))
                     sql.Insert(SelectedModel);
-                ViewWordList.Remove(SelectedModel);
+                _orjList.Remove(SelectedModel); 
                 sql.Dispose();
+                SearchWord = string.Empty;
             }
             else
                 await ClassUtils.DisplayAlert("Hata", "Kelime Seçmediniz!", "Tamam");
         });
-        private WordModel _selectedModel; 
+        private WordModel _selectedModel;
         public WordModel SelectedModel
         {
             get => _selectedModel;
@@ -79,8 +95,8 @@ namespace Xamarin.Sozluk.ViewModels
                 ListRefreshing = true;
                 var sql = new SqLiteManager();
                 foreach (var d in items.Result)
-                { 
-                    if (!sql.Exists(d.Key)) 
+                {
+                    if (!sql.Exists(d.Key))
                         ViewWordList.Add(new WordModel()
                         {
                             Word = d.Object.Word,
@@ -90,6 +106,7 @@ namespace Xamarin.Sozluk.ViewModels
                             ObjectKey = d.Key
                         });
                 }
+                _orjList = ViewWordList;
                 ListRefreshing = false;
             });
         }
@@ -97,8 +114,8 @@ namespace Xamarin.Sozluk.ViewModels
         //{
         //    var newWord = new WordModel()
         //    {
-        //        Word = "about",
-        //        MeaningOfTheWord = "hakkında",
+        //        Word = "ability",
+        //        MeaningOfTheWord = "yetenek",
         //        CorrectCount = 0,
         //        NumberOfViews = 0
         //    };
@@ -107,8 +124,8 @@ namespace Xamarin.Sozluk.ViewModels
 
         //    newWord = new WordModel()
         //    {
-        //        Word = "activity",
-        //        MeaningOfTheWord = "aktivite",
+        //        Word = "abolish",
+        //        MeaningOfTheWord = "iptal etmek",
         //        CorrectCount = 0,
         //        NumberOfViews = 0
         //    };
@@ -116,8 +133,8 @@ namespace Xamarin.Sozluk.ViewModels
 
         //    newWord = new WordModel()
         //    {
-        //        Word = "agree",
-        //        MeaningOfTheWord = "anlaşmak",
+        //        Word = "access",
+        //        MeaningOfTheWord = "giriş - yol",
         //        CorrectCount = 0,
         //        NumberOfViews = 0
         //    };
@@ -125,8 +142,8 @@ namespace Xamarin.Sozluk.ViewModels
 
         //    newWord = new WordModel()
         //    {
-        //        Word = "add",
-        //        MeaningOfTheWord = "eklemek",
+        //        Word = "acknowledge",
+        //        MeaningOfTheWord = "doğrulamak",
         //        CorrectCount = 0,
         //        NumberOfViews = 0
         //    };
