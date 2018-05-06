@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Firebase.Database.Query;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Firebase.Database.Query;
 using Xamarin.Forms;
 using Xamarin.Sozluk.Annotations;
 using Xamarin.Sozluk.Models;
@@ -12,8 +12,8 @@ namespace Xamarin.Sozluk.ViewModels
 {
     public class QuestionViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged; 
-        private int CorrectAnswerCount { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private int QuestionCount { get; set; }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -32,11 +32,9 @@ namespace Xamarin.Sozluk.ViewModels
             }
         }
         public Command ClickAnswerCommand => new Command(async (text) =>
-        { 
+        {
             if ((string)text == QuestionWord.MeaningOfTheWord)
-            {
-                await ClassUtils.DisplayAlert("Başarılı", "Doğru cevap.", "Devam et");
-                this.CorrectAnswerCount++;
+            { 
 #pragma warning disable 4014
                 Task.Factory.StartNew(async () =>
                 {
@@ -47,13 +45,13 @@ namespace Xamarin.Sozluk.ViewModels
                     ClassUtils.UserInfo.Score += QuestionWord.Point;
                     await ClassUtils.MyFireBaseClient.Child("Users").Child(ClassUtils.UserInfo.ObjectKey)
                         .PutAsync(ClassUtils.UserInfo);
-                }); 
+                });
 #pragma warning restore 4014
             }
             else
                 await ClassUtils.DisplayAlert("Hata", "Yanlış cevap verdiniz.", "Devam et");
 
-            if (this.CorrectAnswerCount < 5)
+            if (QuestionCount < 5)
                 CreateQuestion();
             else
             {
@@ -97,16 +95,16 @@ namespace Xamarin.Sozluk.ViewModels
             }
         }
         public QuestionViewModel()
-        { 
-            CreateQuestion(); 
+        {
+            CreateQuestion();
         }
         public void CreateQuestion()
         {
             Task.Run(async () =>
             {
-
+                QuestionCount++;
                 var sql = new SqLiteManager();
-                Answers=new string[4];
+                Answers = new string[4];
                 var words = sql.GetAll().ToList();
                 Random rnd = new Random();
                 int rndint = rnd.Next(0, words.Count - 1);
@@ -124,18 +122,43 @@ namespace Xamarin.Sozluk.ViewModels
                         wronganswer = words[rnd.Next(0, words.Count - 1)].MeaningOfTheWord;
                         if (++counter <= 50) continue;
                         await ClassUtils.DisplayAlert("Hata", "4 den az kelimeniz var! Lütfen yeni kelime ekleyiniz.", "Tamam");
+                        await ClassUtils.CloseView();
                         break;
                     } while (WrongExists(wronganswer));
                     Answers[i] = wronganswer;
                 }
-                SetViewVisible(true);
+                SetViewVisible(true); 
+
+                OnPropertyChanged();
+
+                EvaluationText = (QuestionWord.CorrectCount == 0 || QuestionWord.NumberOfViews == 0)
+                    ? $"{QuestionWord.Point} puanlık değerlendirme ile %100 doğru bilindi."
+                    : $"{QuestionWord.Point} puanlık değerlendirme ile %{(100 * QuestionWord.CorrectCount / QuestionWord.NumberOfViews).ToString()} doğru bilindi.";
+
+                QuestionWord.NumberOfViews++; 
+
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                ClassUtils.MyFireBaseClient.Child("Words").Child(QuestionWord.ObjectKey)
+                    .PutAsync(QuestionWord);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed  
             });
+
             bool WrongExists(string val)
             {
                 for (int i = 0; i < 4; i++)
                     if (Answers[i] == val)
                         return true;
                 return false;
+            }
+        }  
+        private string _evaluationText;
+        public string EvaluationText
+        {
+            get => _evaluationText;
+            set
+            {
+                _evaluationText = value;
+                OnPropertyChanged();
             }
         }
     }

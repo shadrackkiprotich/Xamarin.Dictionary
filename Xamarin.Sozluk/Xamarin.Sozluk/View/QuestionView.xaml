@@ -29,8 +29,7 @@
 
                 <StackLayout BackgroundColor="#B52535" VerticalOptions="Start" Padding="5">
                     <Label TextColor="AntiqueWhite" HorizontalOptions="Center" 
-                   Text="Kalan Süre : 20 sn"/>
-                    <Label Text="Bu soruyu ilk kez çözüyorsunuz" FontSize="Micro" VerticalOptions="Start" HorizontalOptions="Center" TextColor="Beige"></Label>
+                   Text="{Binding EvaluationText}"/>
                 </StackLayout>
 
                 <Grid x:Name="MainGrid" ColumnSpacing="10" RowSpacing="10"   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="15">
@@ -60,10 +59,7 @@
                         <Button x:Name="BtnAns4" Text="{Binding Answers[3]}" WidthRequest="150" HeightRequest="50" BackgroundColor="#F3B21B" TextColor="White"
                                 Command="{Binding ClickAnswerCommand}" CommandParameter="{Binding Source={x:Reference BtnAns4}, Path=Text}" CornerRadius="25"></Button>
                     </StackLayout>
-                </Grid>
-                <StackLayout VerticalOptions="Fill" BackgroundColor="#D69D85" Margin="5">
-                    <Label Text="Soru 5 puanlık değerlendirme ile %70 doğru bilindi" HorizontalOptions="Center" FontSize="Micro"></Label>
-                </StackLayout>
+                </Grid> 
             </StackLayout> 
         </RelativeLayout>
     </ContentPage.Content>
