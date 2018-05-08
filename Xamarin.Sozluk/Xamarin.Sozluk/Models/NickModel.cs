@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Xamarin.Sozluk.Models
 {
@@ -8,6 +6,7 @@ namespace Xamarin.Sozluk.Models
     { 
         public string Nick{ get; set; }
         public string ObjectKey { get; set; }
-        public int Score { get; set; }
+        public int Score { get; set; } 
+        public DateTime CreationDate { get; set; }
     }
 }

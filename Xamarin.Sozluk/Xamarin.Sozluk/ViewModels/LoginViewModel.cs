@@ -1,4 +1,5 @@
-﻿using Firebase.Database;
+﻿using System;
+using Firebase.Database;
 using Firebase.Database.Query;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +8,6 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Sozluk.Models;
 using Xamarin.Sozluk.Views;
-
 namespace Xamarin.Sozluk.ViewModels
 {
     public class LoginViewModel : INotifyPropertyChanged
@@ -53,7 +53,7 @@ namespace Xamarin.Sozluk.ViewModels
                     await ClassUtils.DisplayAlert("Error", "This username already exists!", "OK");
                 else
                 {
-                    NickModel newNick = new NickModel {Nick = EntryNick};
+                    NickModel newNick = new NickModel {Nick = EntryNick,Score = 0,CreationDate = DateTime.Now};
                     var addedObject = await ClassUtils.MyFireBaseClient.Child("Users").PostAsync(newNick);
 
                     if (Application.Current.Properties.Count > 0)

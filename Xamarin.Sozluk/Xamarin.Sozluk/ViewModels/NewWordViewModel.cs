@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Firebase.Database.Query;
+﻿using Firebase.Database.Query;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reactive.Linq;
+using System.Linq; 
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Firebase.Database;
 using Xamarin.Forms;
 using Xamarin.Sozluk.Annotations;
 using Xamarin.Sozluk.Models;
-using Xamarin.Sozluk.Views;
 
 namespace Xamarin.Sozluk.ViewModels
 {
@@ -30,11 +24,9 @@ namespace Xamarin.Sozluk.ViewModels
         {
             get => _viewWordList;
             set
-            {
-                ListRefreshing = true;
+            { 
                 _viewWordList = value;
-                OnPropertyChanged();
-                ListRefreshing = false;
+                OnPropertyChanged(); 
             }
         }
         private string _searchWord;
@@ -86,13 +78,18 @@ namespace Xamarin.Sozluk.ViewModels
                 _selectedModel = value;
                 OnPropertyChanged();
             }
-        }
+        } 
         public NewWordViewModel()
-        { 
+        {
+            RefreshWordList();
+        }
+        public void RefreshWordList()
+        {
             Task.Run(() =>
             {
                 var items = ClassUtils.MyFireBaseClient.Child("Words").OrderByKey().OnceAsync<WordModel>(); // all words come
                 ListRefreshing = true;
+                ViewWordList.Clear();
                 var sql = new SqLiteManager();
                 foreach (var d in items.Result)
                 {

@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Firebase.Database;
 using System.Threading.Tasks;
-using Firebase.Database;
-using Firebase.Database.Query;
 using Xamarin.Forms;
 using Xamarin.Sozluk.Models;
 
@@ -29,7 +27,7 @@ namespace Xamarin.Sozluk
         {  
             Application.Current.MainPage = new NavigationPage(root: page)
             {
-                BarBackgroundColor = ClassUtils.NavigationBarBackgroundColor,
+                BarBackgroundColor = NavigationBarBackgroundColor,
                 BarTextColor = Color.White
             };
         }

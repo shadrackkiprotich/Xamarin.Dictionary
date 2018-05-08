@@ -21,7 +21,7 @@ namespace Xamarin.Sozluk.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        public string Title => "Soru Havuzu";
         private string[] _answers;
         public string[] Answers
         {
@@ -35,7 +35,7 @@ namespace Xamarin.Sozluk.ViewModels
         public Command ClickAnswerCommand => new Command(async (text) =>
         {
             if ((string)text == QuestionWord.MeaningOfTheWord)
-            { 
+            {
 #pragma warning disable 4014
                 Task.Factory.StartNew(async () =>
                 {
@@ -104,13 +104,17 @@ namespace Xamarin.Sozluk.ViewModels
             Task.Run(async () =>
             {
                 QuestionCount++;
-                var sql = new SqLiteManager(); 
+                var sql = new SqLiteManager();
                 Answers = new string[4];
                 var words = sql.GetAll().ToList();
                 if (words.Count < 6)
                 {
-                    await ClassUtils.DisplayAlert("Hata", "Kelime havuzunuz yeterli değil!", "Tamam");
-                    await ClassUtils.CloseView();
+                    Device.BeginInvokeOnMainThread(async () =>
+                        {
+                            await ClassUtils.DisplayAlert("Hata", "Kelime havuzunuz yeterli değil!", "Tamam");
+                            await ClassUtils.CloseView();
+                        }
+                    );
                     return;
                 }
                 Random rnd = new Random();
@@ -134,7 +138,7 @@ namespace Xamarin.Sozluk.ViewModels
                     } while (WrongExists(wronganswer));
                     Answers[i] = wronganswer;
                 }
-                SetViewVisible(true); 
+                SetViewVisible(true);
 
                 OnPropertyChanged();
 
@@ -142,7 +146,7 @@ namespace Xamarin.Sozluk.ViewModels
                     ? $"{QuestionWord.Point} puanlık değerlendirme ile %100 doğru bilindi."
                     : $"{QuestionWord.Point} puanlık değerlendirme ile %{(100 * QuestionWord.CorrectCount / QuestionWord.NumberOfViews).ToString()} doğru bilindi.";
 
-                QuestionWord.NumberOfViews++; 
+                QuestionWord.NumberOfViews++;
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 ClassUtils.MyFireBaseClient.Child("Words").Child(QuestionWord.ObjectKey)
@@ -157,7 +161,7 @@ namespace Xamarin.Sozluk.ViewModels
                         return true;
                 return false;
             }
-        }  
+        }
         private string _evaluationText;
         public string EvaluationText
         {

@@ -1,16 +1,15 @@
 ﻿
-using System.Linq;
-using System.Threading.Tasks;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Xamarin.Forms;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Sozluk.Models;
 using Xamarin.Sozluk.View;
 using Xamarin.Sozluk.Views;
 
 namespace Xamarin.Sozluk
 {
-    public partial class App : Application
+    public partial class App 
     {
         public App()
         {
@@ -22,7 +21,7 @@ namespace Xamarin.Sozluk
                 {
                     string nickKey = Current.Properties["UserKey"] as string;
                     var item = ClassUtils.MyFireBaseClient.Child("Users").OrderByKey()
-                        .StartAt((string)nickKey).LimitToFirst(1).OnceAsync<NickModel>();
+                        .StartAt(nickKey).LimitToFirst(1).OnceAsync<NickModel>();
                     var d = item.Result.ToList()[0];
                     ClassUtils.UserInfo = new NickModel()
                     {

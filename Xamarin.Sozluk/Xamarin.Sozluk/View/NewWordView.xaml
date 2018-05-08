@@ -21,24 +21,24 @@
                 <Label TextColor="White" HorizontalOptions="Center" FontSize="Micro" IsVisible="True"
                        Text="Kendi eklediğiniz kelimeler, öğrenme kuyruğunda üst sıralara çekilir. Ancak genel sıralamada sizin eklediğiniz kelimeler puanlanmaz." 
                        HorizontalTextAlignment="Center"/>
-            </StackLayout> 
+            </StackLayout>
 
             <StackLayout Padding="0" Margin="0">
                 <Entry WidthRequest="150" TextColor="Black" Placeholder="İngilizce kelime ara.." PlaceholderColor="Gray" Text="{Binding SearchWord}"></Entry>
                 <ListView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ViewWordList}"
-                      IsRefreshing="{Binding ListRefreshing}"
+                      IsRefreshing="{Binding ListRefreshing}"  
                           SelectedItem="{Binding SelectedModel}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" Padding="15,0,0,0">
                                     <Label Text="{Binding Word}" HorizontalOptions="Start"/>
-                                        <Label Text="{Binding MeaningOfTheWord}" HorizontalOptions="FillAndExpand"/> 
+                                    <Label Text="{Binding MeaningOfTheWord}" HorizontalOptions="FillAndExpand"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView> 
+                </ListView>
             </StackLayout>
             <Button Text="Seçtiğimi ekle" BackgroundColor="#B52535" TextColor="White" Margin="20" 
                     Command="{Binding AddWordToQueue }"></Button>
