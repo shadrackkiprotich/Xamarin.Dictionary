@@ -61,7 +61,7 @@ namespace Xamarin.Sozluk.ViewModels
                     Application.Current.Properties.Add("UserKey", addedObject.Key);
                     Application.Current.Properties.Add("UserNick", newNick.Nick);
                     await Application.Current.SavePropertiesAsync();
-
+                    ClassUtils.UserInfo = newNick;
                     ClassUtils.SetMainPage(new MainView());
                 }
             }

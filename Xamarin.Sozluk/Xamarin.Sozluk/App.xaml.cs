@@ -1,5 +1,8 @@
 ﻿
+using System.Linq;
+using System.Threading.Tasks;
 using Firebase.Database;
+using Firebase.Database.Query;
 using Xamarin.Forms;
 using Xamarin.Sozluk.Models;
 using Xamarin.Sozluk.View;
@@ -12,35 +15,42 @@ namespace Xamarin.Sozluk
         public App()
         {
             InitializeComponent();
-            ClassUtils.MyFireBaseClient = new FirebaseClient(ClassUtils.FirebaseDbPath); 
-            if (Application.Current.Properties.Count > 0)
+            ClassUtils.MyFireBaseClient = new FirebaseClient(ClassUtils.FirebaseDbPath);
+            if (Current.Properties.Count > 0)
             {
-                ClassUtils.UserInfo = new NickModel()
+                Task.Run(() =>
                 {
-                    ObjectKey = Application.Current.Properties["UserKey"] as string,
-                    Nick = Application.Current.Properties["UserNick"] as string,
-                    Score = 0
-                };
+                    string nickKey = Current.Properties["UserKey"] as string;
+                    var item = ClassUtils.MyFireBaseClient.Child("Users").OrderByKey()
+                        .StartAt((string)nickKey).LimitToFirst(1).OnceAsync<NickModel>();
+                    var d = item.Result.ToList()[0];
+                    ClassUtils.UserInfo = new NickModel()
+                    {
+                        Nick = d.Object.Nick,
+                        ObjectKey = d.Object.ObjectKey,
+                        Score = d.Object.Score
+                    };
+                }); 
                 ClassUtils.SetMainPage(new MainView());
             }
             else
                 ClassUtils.SetMainPage(new LoginView());
         }
-    
 
-    protected override void OnStart()
-    {
-        // Handle when your app starts
-    }
 
-    protected override void OnSleep()
-    {
-        // Handle when your app sleeps
-    }
+        protected override void OnStart()
+        {
+            // Handle when your app starts
+        }
 
-    protected override void OnResume()
-    {
-        // Handle when your app resumes
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+        }
+
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+        }
     }
-}
 }

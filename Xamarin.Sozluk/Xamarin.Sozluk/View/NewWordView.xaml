@@ -31,16 +31,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal" Padding="5">
-                                    
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions> 
-                                        <Label Grid.Column="0" Text="{Binding Word}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-                                        <Label Grid.Column="1" Text="{Binding MeaningOfTheWord}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-                                    </Grid>
+                                <StackLayout Orientation="Horizontal" Padding="15,0,0,0">
+                                    <Label Text="{Binding Word}" HorizontalOptions="Start"/>
+                                        <Label Text="{Binding MeaningOfTheWord}" HorizontalOptions="FillAndExpand"/> 
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

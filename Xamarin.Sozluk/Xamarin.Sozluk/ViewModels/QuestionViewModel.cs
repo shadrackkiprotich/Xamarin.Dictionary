@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -103,9 +104,15 @@ namespace Xamarin.Sozluk.ViewModels
             Task.Run(async () =>
             {
                 QuestionCount++;
-                var sql = new SqLiteManager();
+                var sql = new SqLiteManager(); 
                 Answers = new string[4];
                 var words = sql.GetAll().ToList();
+                if (words.Count < 6)
+                {
+                    await ClassUtils.DisplayAlert("Hata", "Kelime havuzunuz yeterli değil!", "Tamam");
+                    await ClassUtils.CloseView();
+                    return;
+                }
                 Random rnd = new Random();
                 int rndint = rnd.Next(0, words.Count - 1);
                 QuestionWord = words[rndint];

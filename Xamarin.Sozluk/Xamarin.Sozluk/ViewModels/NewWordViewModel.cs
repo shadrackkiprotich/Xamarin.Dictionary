@@ -103,7 +103,8 @@ namespace Xamarin.Sozluk.ViewModels
                             MeaningOfTheWord = d.Object.MeaningOfTheWord,
                             NumberOfViews = d.Object.NumberOfViews,
                             CorrectCount = d.Object.CorrectCount,
-                            ObjectKey = d.Key
+                            ObjectKey = d.Key,
+                            Point = d.Object.Point
                         });
                 }
                 _orjList = ViewWordList;
