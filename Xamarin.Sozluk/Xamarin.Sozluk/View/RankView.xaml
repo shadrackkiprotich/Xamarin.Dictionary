@@ -12,13 +12,14 @@
                       IsRefreshing="{Binding ListRefreshing}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="15">
+                        <TextCell Text="{Binding Nick}"
+                                  Detail="{Binding Score, StringFormat='total point : {0}'}">
+                            <!--<StackLayout Orientation="Horizontal" Padding="15">
                                 <Label Text="{Binding Nick}" HorizontalOptions="Start"/>
                                 <Label Text="Puan :" TextColor="Black"></Label>
                                 <Label Text="{Binding Score}" HorizontalOptions="FillAndExpand"/>
-                            </StackLayout>
-                        </ViewCell>
+                            </StackLayout>-->
+                        </TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
